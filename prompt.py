@@ -1,13 +1,12 @@
 from dotenv import load_dotenv
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.vectorstores.chroma import Chroma
-# from langchain.chat_models import ChatOpenAI
 from langchain_community.chat_models import ChatOpenAI
-# import langchain
+import langchain
 from langchain.chains import RetrievalQA
 from redundant_filter_retriever import RedundantFilterRetriever
 
-# langchain.debug = True
+langchain.debug = True
 
 load_dotenv()
 embeddings = OpenAIEmbeddings()
