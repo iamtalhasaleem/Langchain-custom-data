@@ -27,6 +27,7 @@ chain = RetrievalQA.from_chain_type(
     # chain_type = "map_reduce"
     # chain_type = "map_rerank"
     # chain_type = "refine"
+    # verbose = True
 )
 
 result = chain.run("What is an interesting fact about the English language ?")
