@@ -5,12 +5,12 @@ from langchain.vectorstores.chroma import Chroma
 from langchain_community.chat_models import ChatOpenAI
 # import langchain
 from langchain.chains import RetrievalQA
+from redundant_filter_retriever import RedundantFilterRetriever
 
 # langchain.debug = True
 
 load_dotenv()
 embeddings = OpenAIEmbeddings()
-
 chat = ChatOpenAI()
 
 db = Chroma(
@@ -18,7 +18,12 @@ db = Chroma(
     embedding_function=embeddings
 )
 
-retriever = db.as_retriever()
+# retriever = db.as_retriever()
+retriever = RedundantFilterRetriever(
+    embeddings= embeddings,
+    chroma=db
+)
+
 
 chain = RetrievalQA.from_chain_type(
     llm = chat,
@@ -32,5 +37,5 @@ chain = RetrievalQA.from_chain_type(
 
 result = chain.run("What is an interesting fact about the English language ?")
 
-print("\n\n")
+print("\n")
 print(result)
