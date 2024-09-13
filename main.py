@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
+# chat = ChatOpenAI(verbose = True)
 
 embeddings = OpenAIEmbeddings()
 
@@ -33,7 +34,8 @@ db = Chroma.from_documents(
 )
 
 results = db.similarity_search_with_score(
-    "What is an interesting fact about English language?"
+    "What is an interesting fact about the English language?",
+    k = 3
 )
 
 for result in results:
